@@ -1,6 +1,6 @@
 ''' Program is made so that the weights are generated randomly
     and the output error is not only treated like good or not,
-    added reinforcement learning (teacher) and there are 
+    added reinforcement learning, backpropagation and there are 
     2 hidden layers and sigmoid function activation'''
 import numpy as np
 
