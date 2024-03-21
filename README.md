@@ -6,6 +6,7 @@
     - [XOR problem](#xor-problem)
     - [Deep learning](#deep-learning)
     - [Connection between everyhing](#connection-between-perceptron-xor-and-deep-learning)
+- [How to program](#how-to-program)
 - [src](#src)
     - [1lay.py](#1-layer)
     - [2lay_sigmoid.py OR 2lay_ReLU.py](#2-layer-sigmoidrelu)
@@ -15,7 +16,7 @@
 - [Conclusion](#conclusion)
 
 ## Introduction
-Perceptrons, XOR, and deep learning are foundational concepts in the field of artificial intelligence and machine learning. Understanding them provides insights into the evolution of neural network architectures and their capabilities.
+Perceptrons, XOR, and deep learning are foundational concepts in the field of artificial intelligence and machine learning. Understanding them provides insights into the evolution of neural network architectures and their capabilities. Main functions needed to create a deep learning program:
 
 ### Perceptron:
 The perceptron, introduced by Frank Rosenblatt in the late 1950s, is one of the earliest forms of artificial neural networks. It is a binary classifier that takes multiple input signals, applies weights to them, and produces an output based on a threshold function. Perceptrons have a single layer and can only solve linearly separable problems, meaning they can't learn patterns that aren't linearly separable.
@@ -28,6 +29,24 @@ Deep learning is a subfield of machine learning focused on artificial neural net
 
 ### Connection between Perceptron, XOR, and Deep Learning:
 The XOR problem played a significant role in the history of artificial neural networks. When researchers attempted to train single-layer perceptrons to solve XOR, they discovered its limitations. However, the introduction of multi-layer perceptrons (deep neural networks) with hidden layers allowed researchers to overcome these limitations and successfully solve the XOR problem. This breakthrough paved the way for the development of deep learning, which has revolutionized various fields, including computer vision, natural language processing, and speech recognition.
+
+## How to program
+Main functions needed to create a deep learning program:
+
+#### Load Data
+This function loads and preprocesses the dataset needed for training the deep learning model.
+
+#### Build Model
+This function defines and initializes the architecture of the deep learning model. It includes specifying the layers, activation functions, and any other necessary components.
+
+#### Train Model
+This function trains the deep learning model using the training data. It involves iteratively updating the model parameters (weights and biases) to minimize the loss function on the training data.
+
+#### Evaluate Model
+This function evaluates the performance of the trained model on a separate set of test data. It calculates metrics such as accuracy, precision, recall, or others depending on the problem domain.
+
+#### Main
+The main function orchestrates the entire deep learning pipeline. It calls the load data function to prepare the dataset, builds the model, trains it using the training data, and finally evaluates its performance on the test data.
 
 ## 1 layer
 It is the default Rosenblatt perceptron with only one layer that can solve some easy liner problems as written above. The problem within solving XOR with such perceptron outputs shown on cartesian plane:
