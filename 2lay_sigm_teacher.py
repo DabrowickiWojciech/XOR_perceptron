@@ -9,8 +9,10 @@ class TwoLayerPerceptron:
     ''' Initializing perceptron variables '''
     def __init__(self, input_size, hidden_size, output_size):
         # Setting weight and biases for two layers of perceptron
+        ''' First layer '''
         self.hidden_weights = np.random.rand(input_size, hidden_size)
         self.hidden_bias = np.random.rand(hidden_size)
+        ''' Second layer '''
         self.output_weights = np.random.rand(hidden_size, output_size)
         self.output_bias = np.random.rand(output_size)
 
@@ -35,18 +37,16 @@ class TwoLayerPerceptron:
     def predict(self, inputs):
         self.inputs = inputs
         # Dot product of inserting inputs and their weights with biases
-        ''' First layer '''
         self.hidden_layer_input = np.dot(self.inputs, self.hidden_weights) + self.hidden_bias
         # Applying activation function
         self.hidden_layer_output = self.sigmoid(self.hidden_layer_input)
-        ''' Second layer '''
         self.output_layer_input = np.dot(self.hidden_layer_output, self.output_weights) + self.output_bias
         self.output = self.sigmoid(self.output_layer_input)
         # Returning estimated values depending on two layers
         return self.output, self.hidden_layer_output
 
     ''' Comparison function '''
-    def train(self, inputs, targets, rewards, learning_rate=0.1, max_epochs=10000):
+    def train(self, inputs, targets, rewards, learning_rate=0.1, max_epochs=3000):
         self.inputs = inputs
         self.targets = targets
         self.learning_rate = learning_rate
@@ -63,10 +63,10 @@ class TwoLayerPerceptron:
             self.hidden_delta = self.hidden_error * self.derivative_sigmoid(self.hidden_layer_input)
 
             # Update weights and biases
-            self.output_weights += self.learning_rate * np.dot(self.hidden_layer_output.T, self.output_delta)
-            self.output_bias += self.learning_rate * np.sum(self.output_delta, axis=0)
+            self.output_weights += self.learning_rate * np.dot(self.hidden_layer_output.T, self.output_delta)         
+            self.output_bias += self.learning_rate * np.sum(self.output_delta)            
             self.hidden_weights += self.learning_rate * np.dot(self.inputs.T, self.hidden_delta)
-            self.hidden_bias += self.learning_rate * np.sum(self.hidden_delta, axis=0)
+            self.hidden_bias += self.learning_rate * np.sum(self.hidden_delta)
 
             # Check for convergence
             if np.mean(np.abs(self.output_error)) < 0.01:
@@ -75,14 +75,14 @@ class TwoLayerPerceptron:
             # Apply reinforcement learning
             self.reward_multiplier = self.rewards * self.output_error
             self.output_weights += self.learning_rate * np.dot(self.hidden_layer_output.T, self.reward_multiplier)
-            self.output_bias += self.learning_rate * np.sum(self.reward_multiplier, axis=0)
+            self.output_bias += self.learning_rate * np.sum(self.reward_multiplier)
 
 ''' Main function '''
 def main():
     # Inputs and targets for XOR
     inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
     targets = np.array([[0], [1], [1], [0]])
-    rewards = np.array([[1], [1], [1], [1]])  # All correct predictions initially
+    rewards = np.array([[10], [10], [10], [10]])  # All correct predictions initially
 
     # Create two-layered perceptron
     perceptron = TwoLayerPerceptron(input_size=2, hidden_size=2, output_size=1)

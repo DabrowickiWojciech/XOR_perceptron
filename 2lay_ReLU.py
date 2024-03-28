@@ -51,9 +51,9 @@ class TwoLayerPerceptron:
 
             # Update weights and biases
             self.output_weights += self.learning_rate * np.dot(self.hidden_layer_output.T, self.output_delta)
-            self.output_bias += self.learning_rate * np.sum(self.output_delta, axis=0)
+            self.output_bias += self.learning_rate * np.sum(self.output_delta)
             self.hidden_weights += self.learning_rate * np.dot(inputs.T, self.hidden_delta)
-            self.hidden_bias += self.learning_rate * np.sum(self.hidden_delta, axis=0)
+            self.hidden_bias += self.learning_rate * np.sum(self.hidden_delta)
 
             # Check for convergence
             if np.mean(np.abs(self.output_error)) < 0.01:
