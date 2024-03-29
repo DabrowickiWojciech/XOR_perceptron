@@ -13,6 +13,7 @@
     - [2lay_sigm_teacher.py](#2-layer-sigmoid-teacher)
         - [Reinforcement learning](#reinforcement-learning)
         - [Backpropagation](#backpropagation)
+    - [Comparison between 2 layer programs](#comparison-between-2-layer-programs)
 - [Conclusion](#conclusion)
 
 ## Introduction
@@ -95,6 +96,14 @@ In **2lay_sigm_teacher.py** it is made by evaluating derivative function from si
 
 
 [Click for more info](https://en.wikipedia.org/wiki/Backpropagation)
+
+## Comparison between 2 layer programs
+Simply to illustrate the impact of employing teacher-forcing and backpropagation with derivative adjustments, two plots are presented. The initial plot depicts the error function across epochs, indicating that it requires 6000 epochs to reach an error level of 0.1. In contrast, the second plot includes backpropagation and a teacher signal. Here, the epochs required to achieve the same error level plummet to only 1400. This signifies a significant reduction of over fourfold.
+<p align="center">
+    <img src="images/sigmoid_error.jpeg" width = 450>
+    <img src="images/sigmoid_training_error.jpeg" width = 450>
+</p>
+
 
 ## Conclusion
 In conclusion, the single-layer perceptron with or without reinforcement learning offers a straightforward approach to binary classification tasks. While its simplicity makes it easy to implement and interpret, its limitations become apparent when faced with complex, non-linearly separable datasets. However, by incorporating reinforcement learning, the model can adapt and improve its performance over time, making it a versatile tool for certain applications.

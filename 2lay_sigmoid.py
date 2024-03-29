@@ -3,6 +3,7 @@
     any sugestions in which way it should go, but there are 
     2 hidden layers and sigmoid function activation'''
 import numpy as np
+import matplotlib.pyplot as plt
 
 ''' Encapsuled perceptron class with their functions '''
 class TwoLayerPerceptron:
@@ -13,6 +14,7 @@ class TwoLayerPerceptron:
         self.hidden_bias = np.random.rand(hidden_size)
         self.output_weights = np.random.rand(hidden_size, output_size)
         self.output_bias = np.random.rand(output_size)
+        self.plt_errors = []
 
     ''' Activate function for neuron '''
     # Sigmoid activation function
@@ -56,9 +58,21 @@ class TwoLayerPerceptron:
             self.hidden_weights += self.learning_rate * np.dot(inputs.T, self.hidden_delta)
             self.hidden_bias += self.learning_rate * np.sum(self.hidden_delta)
 
+            # Storing data for plot
+            self.error = np.mean(np.abs(self.output_error))
+            self.plt_errors.append(self.error)
+
             # Check for convergence
-            if np.mean(np.abs(self.output_error)) < 0.01:
+            if self.error < 0.01:
                 break
+            
+    def plot_errors(self):
+        plt.plot(self.plt_errors)
+        plt.title('Error during Training')
+        plt.grid(visible=1)
+        plt.xlabel('Epochs')
+        plt.ylabel('Error')
+        plt.show()
 
 def main():
     # Inputs and targets for XOR
@@ -70,6 +84,9 @@ def main():
 
     # Train perceptron
     perceptron.train(inputs, targets)
+    
+    # Ploting
+    perceptron.plot_errors()
 
     # Test the trained perceptron
     print("\nTesting XOR gate:")

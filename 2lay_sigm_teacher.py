@@ -3,6 +3,7 @@
     added reinforcement learning, backpropagation and there are 
     2 hidden layers and sigmoid function activation'''
 import numpy as np
+import matplotlib.pyplot as plt
 
 ''' Encapsuled perceptron class with their functions '''
 class TwoLayerPerceptron:
@@ -15,6 +16,7 @@ class TwoLayerPerceptron:
         ''' Second layer '''
         self.output_weights = np.random.rand(hidden_size, output_size)
         self.output_bias = np.random.rand(output_size)
+        self.plt_errors = []
 
     ''' Activate function for neuron '''
     # Sigmoid activation function
@@ -22,7 +24,7 @@ class TwoLayerPerceptron:
         self.x = x
         return 1 / (1 + np.exp(-self.x))
 
-    ''' Function necessary for backpropagation algorithm '''
+    ''' Function necessary for backpropagation algorithm performance '''
     # The derivative of the sigmoid function is used in the backpropagation algorithm
     # to compute gradients during the training of the neural network. Specifically, it
     # helps to determine how much the error changes with respect to changes in the
@@ -68,8 +70,12 @@ class TwoLayerPerceptron:
             self.hidden_weights += self.learning_rate * np.dot(self.inputs.T, self.hidden_delta)
             self.hidden_bias += self.learning_rate * np.sum(self.hidden_delta)
 
+            # Storing data for plot
+            self.error = np.mean(np.abs(self.output_error))
+            self.plt_errors.append(self.error)
+
             # Check for convergence
-            if np.mean(np.abs(self.output_error)) < 0.01:
+            if self.error < 0.01:
                 break
 
             # Apply reinforcement learning
@@ -77,12 +83,20 @@ class TwoLayerPerceptron:
             self.output_weights += self.learning_rate * np.dot(self.hidden_layer_output.T, self.reward_multiplier)
             self.output_bias += self.learning_rate * np.sum(self.reward_multiplier)
 
+    def plot_errors(self):
+        plt.plot(self.plt_errors)
+        plt.title('Error during Training with backpropagation and reinforcement')
+        plt.grid(visible=1)
+        plt.xlabel('Epochs')
+        plt.ylabel('Error')
+        plt.show()
+
 ''' Main function '''
 def main():
     # Inputs and targets for XOR
     inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
     targets = np.array([[0], [1], [1], [0]])
-    rewards = np.array([[10], [10], [10], [10]])  # All correct predictions initially
+    rewards = np.array([[8], [8], [8], [8]])  # All correct predictions initially
 
     # Create two-layered perceptron
     perceptron = TwoLayerPerceptron(input_size=2, hidden_size=2, output_size=1)
@@ -90,6 +104,9 @@ def main():
     # Train perceptron with reinforcement learning
     perceptron.train(inputs, targets, rewards)
 
+    # Ploting
+    perceptron.plot_errors()
+    
     # Test the trained perceptron
     print("\nTesting XOR gate:")
     for i in range(len(inputs)):
