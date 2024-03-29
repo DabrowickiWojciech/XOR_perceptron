@@ -8,9 +8,11 @@ import numpy as np
 class TwoLayerPerceptron:
     ''' Initializing perceptron variables '''
     def __init__(self, input_size, hidden_size, output_size):
+        ''' First layer '''
         # Setting weight and biases for two layers of perceptron
         self.hidden_weights = np.random.rand(input_size, hidden_size)
         self.hidden_bias = np.random.rand(hidden_size)
+        ''' Second layer '''
         self.output_weights = np.random.rand(hidden_size, output_size)
         self.output_bias = np.random.rand(output_size)
 
@@ -23,11 +25,9 @@ class TwoLayerPerceptron:
     def predict(self, inputs):
         self.inputs = inputs
         # Dot product of inserting inputs and their weights with biases
-        ''' First layer '''
         self.hidden_layer_input = np.dot(self.inputs, self.hidden_weights) + self.hidden_bias
         # Applying activation function
         self.hidden_layer_output = self.ReLU(self.hidden_layer_input)
-        ''' Second layer '''
         self.output_layer_input = np.dot(self.hidden_layer_output, self.output_weights) + self.output_bias
         self.output = self.ReLU(self.output_layer_input)
         # Returning estimated values depending on two layers
