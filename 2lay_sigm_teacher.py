@@ -66,9 +66,9 @@ class TwoLayerPerceptron:
 
             # Update weights and biases
             self.output_weights += self.learning_rate * np.dot(self.hidden_layer_output.T, self.output_delta)         
-            self.output_bias += self.learning_rate * np.sum(self.output_delta)            
+            self.output_bias += self.learning_rate * np.sum(self.output_delta, axis = 0)            
             self.hidden_weights += self.learning_rate * np.dot(self.inputs.T, self.hidden_delta)
-            self.hidden_bias += self.learning_rate * np.sum(self.hidden_delta)
+            self.hidden_bias += self.learning_rate * np.sum(self.hidden_delta, axis = 0)
 
             # Storing data for plot
             self.error = np.mean(np.abs(self.output_error))
