@@ -17,7 +17,7 @@
 - [Conclusion](#conclusion)
 
 ## Introduction
-Perceptrons, XOR, and deep learning are foundational concepts in the field of artificial intelligence and machine learning. Understanding them provides insights into the evolution of neural network architectures and their capabilities. Main functions needed to create a deep learning program:
+Perceptrons, XOR, and deep learning are foundational concepts in the field of artificial intelligence and machine learning. Understanding them provides insights into the evolution of neural network architectures and their capabilities.
 
 ### Perceptron:
 The perceptron, introduced by Frank Rosenblatt in the late 1950s, is one of the earliest forms of artificial neural networks. It is a binary classifier that takes multiple input signals, applies weights to them, and produces an output based on a threshold function. Perceptrons have a single layer and can only solve linearly separable problems, meaning they can't learn patterns that aren't linearly separable.
