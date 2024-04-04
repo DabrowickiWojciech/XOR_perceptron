@@ -10,7 +10,7 @@
 - [src](#src)
     - [1lay.py](#1-layer)
     - [2lay_sigmoid.py OR 2lay_ReLU.py](#2-layer-sigmoidrelu)
-    - [2lay_sigm_teacher.py](#2-layer-sigmoid-teacher)
+    - [2lay_sigm_reinforcementlearning.py](#2-layer-sigmoid-reinforcementlearning)
         - [Reinforcement learning](#reinforcement-learning)
         - [Backpropagation](#backpropagation)
     - [Comparison between 2 layer programs](#comparison-between-2-layer-programs)
@@ -80,7 +80,7 @@ As we see layers adds up as another linear functions and as we progress with hid
 </p>
 Now the output is going to be 0100 insted of 0110, the problem occurs much more in ReLU (rectified linear unit) function, just because of using wrong activation method. The main reason is the first part of the equation when everyhing below 0 for X axis is going to be 0. The problem can be countered by inserting specific wages and biases, but for random generated ones it is difficult to get consistently good performance.
 
-## 2 layer sigmoid teacher
+## 2 layer sigmoid reinforcementlearning
 For better data usage and performance use:
 
 #### Reinforcement learning
