@@ -180,7 +180,7 @@ class NeuralNetwork:
             for i in range(weights.shape[1]):
                 plt.plot(weights[:, i], label=f'{layer}_{i+1}')
         plt.grid(visible=1)
-        plt.title('Changes in Weights over Epochs')
+        plt.title('Changes in Weights and Biases')
         plt.xlabel('Epoch')
         plt.ylabel('Weight Value')
         plt.legend()
