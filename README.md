@@ -17,7 +17,7 @@
 - [Conclusion](#conclusion)
 - [Additions](#additional-programs)
     - [2lay_more_features.py or 2lay_features_batch.py](#2-layer-with-features-and-batch)
-    - [2lay_4hid.py](#2-layer-with-4-hidden)
+    - [2lay_best.py](#2-layer-best)
 
 ## Introduction
 Perceptrons, XOR, and deep learning are foundational concepts in the field of artificial intelligence and machine learning. Understanding them provides insights into the evolution of neural network architectures and their capabilities.
@@ -126,7 +126,7 @@ For comparison with previous programs:
     <img src="images/weights_batch.jpeg" width = 450>
 </p>
 
-### 2 layer with 4 hidden
+### 2 layer best
 At last I wanted to put the program to the limit how many epochs is needed to learn, so that i made, a program to cut off as many as possible. Addons in program:
 
 **Weight Initialization**: The weights are initialized using He initialization, which is a technique designed to ensure that the weights are initialized in such a way that they are neither too large nor too small, helping to prevent vanishing or exploding gradients.

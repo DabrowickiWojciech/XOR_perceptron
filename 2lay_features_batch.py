@@ -53,23 +53,23 @@ class TwoLayerPerceptron:
         for _ in range(max_epochs):
             for batch_start in range(0, len(inputs), batch_size):
                 # Iterate through batches
-                batch_inputs = inputs[batch_start:batch_start+batch_size]  # Batch of input data
-                batch_targets = targets[batch_start:batch_start+batch_size]  # Batch of target outputs
-                self.output, self.hidden_layer_output = self.predict(batch_inputs)  # Forward pass
-                self.output_error = batch_targets - self.output  # Error at the output layer
+                self.batch_inputs = inputs[batch_start:batch_start+batch_size]  # Batch of input data
+                self.batch_targets = targets[batch_start:batch_start+batch_size]  # Batch of target outputs
+                self.output, self.hidden_layer_output = self.predict(self.batch_inputs)  # Forward pass
+                self.output_error = self.batch_targets - self.output  # Error at the output layer
                 self.output_delta = self.output_error * self.derivative_sigmoid(self.output_layer_input)  # Delta at the output layer
                 self.hidden_error = np.dot(self.output_delta, self.output_weights.T)  # Error at the hidden layer
                 self.hidden_delta = self.hidden_error * self.derivative_sigmoid(self.hidden_layer_input)  # Delta at the hidden layer
                 
                 # Update weights and biases
-                output_weight_gradient = np.dot(self.hidden_layer_output.T, self.output_delta)
-                self.prev_output_weight_update = learning_rate * output_weight_gradient + self.momentum * self.prev_output_weight_update
+                self.output_weight_gradient = np.dot(self.hidden_layer_output.T, self.output_delta)
+                self.prev_output_weight_update = learning_rate * self.output_weight_gradient + self.momentum * self.prev_output_weight_update
                 self.output_weights += self.prev_output_weight_update
                 self.prev_output_bias_update = learning_rate * np.sum(self.output_delta, axis=0) + self.momentum * self.prev_output_bias_update
                 self.output_bias += self.prev_output_bias_update
 
-                hidden_weight_gradient = np.dot(batch_inputs.T, self.hidden_delta)
-                self.prev_hidden_weight_update = learning_rate * hidden_weight_gradient + self.momentum * self.prev_hidden_weight_update
+                self.hidden_weight_gradient = np.dot(self.batch_inputs.T, self.hidden_delta)
+                self.prev_hidden_weight_update = learning_rate * self.hidden_weight_gradient + self.momentum * self.prev_hidden_weight_update
                 self.hidden_weights += self.prev_hidden_weight_update
                 self.prev_hidden_bias_update = learning_rate * np.sum(self.hidden_delta, axis=0) + self.momentum * self.prev_hidden_bias_update
                 self.hidden_bias += self.prev_hidden_bias_update
@@ -82,7 +82,7 @@ class TwoLayerPerceptron:
             # Classify outputs
             self.output[self.output >= 0.5] = 1
             self.output[self.output < 0.5] = 0
-            self.classification_error = np.mean(np.abs(self.output[:batch_size] - batch_targets))
+            self.classification_error = np.mean(np.abs(self.output[:batch_size] - self.batch_targets))
 
             # Adjust learning rate based on error change
             if len(self.plt_errors) > 1 and self.plt_errors[-1] >= self.plt_errors[-2]:
@@ -157,7 +157,6 @@ class TwoLayerPerceptron:
         plt.grid(visible=1)
         plt.xlabel('Epochs')
         plt.ylabel('Error')
-        
         plt.show()
 
 def main():

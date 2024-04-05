@@ -193,9 +193,9 @@ labels = np.array([[0], [1], [1], [0]])
 
 # Initialize and train the neural network
 input_size = 2
-hidden_size = 4
+hidden_size = 5
 output_size = 1
-epochs = 100
+epochs = 50
 batch_size = 32
 
 # Initialize and train the neural network
