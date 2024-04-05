@@ -1,6 +1,3 @@
-''' Program is made so that the weights are generated randomly
-    and the output error is only treated like good or not without
-    any sugestions in which way it should go'''
 import numpy as np
 
 ''' Encapsuled perceptron class with their functions '''

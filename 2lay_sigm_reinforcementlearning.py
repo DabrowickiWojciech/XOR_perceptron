@@ -1,7 +1,3 @@
-''' Program is made so that the weights are generated randomly
-    and the output error is not only treated like good or not,
-    added reinforcement learning, backpropagation and there are 
-    2 hidden layers and sigmoid function activation'''
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -25,12 +21,6 @@ class TwoLayerPerceptron:
         return 1 / (1 + np.exp(-self.x))
 
     ''' Function necessary for backpropagation algorithm performance '''
-    # The derivative of the sigmoid function is used in the backpropagation algorithm
-    # to compute gradients during the training of the neural network. Specifically, it
-    # helps to determine how much the error changes with respect to changes in the
-    # network's weights and biases. This information is then used to update the weights
-    # and biases in a direction that minimizes the error, ultimately improving the
-    # network's performance.
     def derivative_sigmoid(self, x):
         self.x = x
         return self.sigmoid(self.x) * (1 - self.sigmoid(self.x))

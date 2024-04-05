@@ -15,6 +15,9 @@
         - [Backpropagation](#backpropagation)
     - [Comparison between 2 layer programs](#comparison-between-2-layer-programs)
 - [Conclusion](#conclusion)
+- [Additions](#additional-programs)
+    - [2lay_more_features.py or 2lay_features_batch.py](#2-layer-with-features-and-batch)
+    - [2lay_4hid.py](#2-layer-with-4-hidden)
 
 ## Introduction
 Perceptrons, XOR, and deep learning are foundational concepts in the field of artificial intelligence and machine learning. Understanding them provides insights into the evolution of neural network architectures and their capabilities.
@@ -83,19 +86,15 @@ Now the output is going to be 0100 insted of 0110, the problem occurs much more 
 ## 2 layer sigmoid reinforcementlearning
 For better data usage and performance use:
 
-#### Reinforcement learning
+#### Reinforcement learning [Click for more info](https://en.wikipedia.org/wiki/Reinforcement_learning)
 Reinforcement learning is a type of machine learning paradigm inspired by the way humans and animals learn through trial and error. In reinforcement learning, an agent interacts with an environment, learning to make decisions by receiving feedback in the form of rewards or penalties. The goal of the agent is to maximize cumulative rewards over time by discovering optimal strategies or policies. Reinforcement learning has found applications in various domains, including robotics, game playing, autonomous vehicles, and recommendation systems.
-[Click for more info](https://en.wikipedia.org/wiki/Reinforcement_learning)
 
-#### Backpropagation
+#### Backpropagation [Click for more info](https://en.wikipedia.org/wiki/Backpropagation)
 Backpropagation is a fundamental algorithm for training artificial neural networks, enabling them to learn from labeled data. It is based on the principle of gradient descent, where the network's weights are adjusted iteratively to minimize a predefined loss function. Backpropagation works by computing the gradient of the loss function with respect to each weight in the network, propagating this gradient backward through the network, and then updating the weights accordingly. This iterative process allows neural networks to learn complex patterns and make accurate predictions on unseen data. Backpropagation has played a crucial role in the success of deep learning, enabling the training of deep neural networks with multiple layers.
 In **2lay_sigm_teacher.py** it is made by evaluating derivative function from sigmoid and by depending on it calculating new biases and weights. derivative_sigmoid function shown below:
 <p align="center">
     <img src="images/sigmoid_der_sigmoid.JPG" width = 600>
 </p>
-
-
-[Click for more info](https://en.wikipedia.org/wiki/Backpropagation)
 
 ## Comparison between 2 layer programs
 Simply to illustrate the impact of employing teacher-forcing and backpropagation with derivative adjustments, two plots are presented. The initial plot depicts the error function across epochs, indicating that it requires 6000 epochs to reach an error level of 0.1. In contrast, the second plot includes backpropagation and a teacher signal. Here, the epochs required to achieve the same error level plummet to only 1400. This signifies a significant reduction of over fourfold.
@@ -104,8 +103,48 @@ Simply to illustrate the impact of employing teacher-forcing and backpropagation
     <img src="images/sigmoid_training_error.jpeg" width = 450>
 </p>
 
-
 ## Conclusion
 In conclusion, the single-layer perceptron with or without reinforcement learning offers a straightforward approach to binary classification tasks. While its simplicity makes it easy to implement and interpret, its limitations become apparent when faced with complex, non-linearly separable datasets. However, by incorporating reinforcement learning, the model can adapt and improve its performance over time, making it a versatile tool for certain applications.
 
 In summary, the double-layer perceptron with backpropagation provides a powerful framework for addressing more complex classification and regression problems. By utilizing multiple layers of neurons and the backpropagation algorithm, the model can learn intricate patterns in the data and make accurate predictions. While training can be computationally intensive and prone to overfitting, careful regularization techniques can mitigate these challenges, resulting in a robust and flexible neural network model.
+
+## Additional programs
+Everything above is sufficient.... BUT it can be done better so I wanted to push the program to it limits. There are three additional programs:
+
+### 2 layer with features and batch
+This program is showimg more plots with errors and weights, changes in code from above 2 layer perceptrons: 
+
+**Momentum** - Momentum is a technique used in machine learning optimization algorithms, particularly in gradient-based optimization methods such as gradient descent, to accelerate convergence and escape local minima. It's particularly useful in training deep neural networks. 
+
+**Mini-batch** - In deep learning, mini-batch refers to a subset of the training data used to compute the gradient descent update for the model parameters during training. Instead of using the entire dataset at once, which can be computationally expensive and memory-intensive, the training data is divided into smaller batches. 
+
+**Adaptive learning coefficient** - Adaptive learning rate methods address this challenge by dynamically adjusting the learning rate according to the behavior of the optimization process. These methods aim to make larger updates to the parameters when the gradients are large and smaller updates when the gradients are small, which can lead to faster convergence and better generalization performance.
+
+For comparison with previous programs:
+<p align="center">
+    <img src="images/errors_batch.jpeg" width = 600>
+    <img src="images/weights_batch.jpeg" width = 450>
+</p>
+
+### 2 layer with 4 hidden
+At last I wanted to put the program to the limit how many epochs is needed to learn, so that i made, a program to cut off as many as possible. Addons in program:
+
+**Weight Initialization**: The weights are initialized using He initialization, which is a technique designed to ensure that the weights are initialized in such a way that they are neither too large nor too small, helping to prevent vanishing or exploding gradients.
+
+**Mini-batch Gradient Descent**: The training process employs mini-batch gradient descent, which updates the weights and biases using gradients computed on small subsets of the training data (mini-batches). This approach can improve convergence speed and memory efficiency compared to batch gradient descent.
+
+**Adaptive Learning Rate (Adam Optimizer)**: The learning rate is adaptively adjusted during training using the Adam optimizer, which combines the concepts of momentum and adaptive learning rates. It maintains per-parameter learning rates and adapts them based on the first and second moments of the gradients.
+
+**Momentum**: Momentum is incorporated into the optimization process to accelerate convergence. It introduces a velocity term that accumulates gradients over time, allowing the optimizer to continue in the direction of the previous updates with a certain momentum.
+
+**ReLU Activation Function**: Rectified Linear Unit (ReLU) activation functions are used in the hidden layers of the neural network. ReLU has become a popular choice due to its simplicity and ability to alleviate the vanishing gradient problem.
+
+**Sigmoid Activation Function**: Sigmoid activation functions are used in the output layer to squash the output values to the range [0, 1], suitable for binary classification tasks.
+
+**Early Stopping**: The training loop includes a condition to stop training early if the output loss falls below a certain threshold, which can prevent overfitting and save computational resources.
+
+Same as befor for comparison:
+<p align="center">
+    <img src="images/error_last_program.jpeg" width = 600>
+    <img src="images/weights_last_program.jpeg" width = 450>
+</p>

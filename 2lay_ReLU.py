@@ -1,7 +1,3 @@
-''' Program is made so that the weights are generated randomly
-    and the output error is only treated like good or not without
-    any sugestions in which way it should go, but there are 
-    2 hidden layers and ReLU function activation'''
 import numpy as np
 
 ''' Encapsuled perceptron class with their functions '''
