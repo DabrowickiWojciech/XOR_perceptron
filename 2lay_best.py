@@ -58,10 +58,10 @@ class NeuralNetwork:
     def backward(self, input, label, output):
         self.delta2 = (label - output) * self.sigmoid_derivative(output)
         self.dW2 = np.dot(self.a1.T, self.delta2)
-        self.db2 = np.sum(self.delta2, axis=0, keepdims=True)
+        self.db2 = np.sum(self.delta2)
         self.delta1 = np.dot(self.delta2, self.W2.T) * self.relu_derivative(self.a1)
         self.dW1 = np.dot(input.T, self.delta1)
-        self.db1 = np.sum(self.delta1, axis=0, keepdims=True)
+        self.db1 = np.sum(self.delta1)
         return self.dW1, self.db1, self.dW2, self.db2
     
     def update_adaptive_learning_rate(self, dW1, db1, dW2, db2):
@@ -193,9 +193,9 @@ labels = np.array([[0], [1], [1], [0]])
 
 # Initialize and train the neural network
 input_size = 2
-hidden_size = 5
+hidden_size = 2
 output_size = 1
-epochs = 50
+epochs = 100
 batch_size = 32
 
 # Initialize and train the neural network
