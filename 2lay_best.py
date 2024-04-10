@@ -16,13 +16,12 @@ class NeuralNetwork:
         self.W2 = np.random.randn(hidden_size, output_size) * np.sqrt(2 / hidden_size)  # He initialization
         self.b2 = np.zeros((1, output_size))
         
-        # Initialize momentum terms
+        # Initialize adaptive learning rate terms and adam variables
         self.vW1 = np.zeros_like(self.W1)
         self.vb1 = np.zeros_like(self.b1)
         self.vW2 = np.zeros_like(self.W2)
         self.vb2 = np.zeros_like(self.b2)
-        
-        # Initialize adaptive learning rate terms
+                
         self.epsilon = 1e-8
         self.beta1 = 0.9
         self.beta2 = 0.999
