@@ -2,12 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class NeuralNetwork:
-    def __init__(self, input_size, hidden_size, output_size, learning_rate=0.1, momentum=0.9):
+    def __init__(self, input_size, hidden_size, output_size, learning_rate=0.1):
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.output_size = output_size
         self.learning_rate = learning_rate
-        self.momentum = momentum
         self.loss_history = {'output': [], 'hidden': [], 'predict' : [], 'classification' : []}
         self.weights_history = {'W1': [], 'b1': [], 'W2': [], 'b2': []}
         
